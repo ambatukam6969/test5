@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiryuu Bot - Bot WhatsApp Multifungsi</title>
+    <style>
+        /* CSS untuk tampilan super keren */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #6a0dad; /* Ungu */
+            --secondary-color: #ff2d75; /* Pink Neon */
+            --background-color: #121212; /* Hitam Gelap */
+            --text-color: #ffffff;
+            --card-bg-color: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--primary-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.pinimg.com/originals/8c/a8/1b/8ca81b67207e736a249339e07bd85e79.gif') no-repeat center center/cover;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .main-cta {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--text-color);
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(106, 13, 173, 0.7);
+        }
+        
+        .main-cta:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 45, 117, 0.8);
+        }
+
+        .features {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg-color);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+        }
+
+        .feature-card .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .feature-card p {
+            color: #ccc;
+        }
+        
+        .downloader {
+            padding: 80px 0;
+            background: var(--card-bg-color);
+            text-align: center;
+        }
+        
+        .downloader-form {
+            max-width: 600px;
+            margin: auto;
+        }
+        
+        .downloader-form input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: 2px solid var(--primary-color);
+            background: #2a2a2a;
+            color: var(--text-color);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .downloader-form button {
+            background: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .downloader-form button:hover {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .contact {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .contact p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .owner-btn {
+            background: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .bot-btn {
+            background: #25D366; /* Warna WhatsApp */
+            color: var(--text-color);
+        }
+        
+        .group-btn {
+            background: var(--secondary-color);
+            color: var(--text-color);
+        }
+        
+        .contact-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            background: var(--card-bg-color);
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        footer p {
+            color: #aaa;
+        }
+        
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Kiryuu<span>Bot</span></a>
+            </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Selamat Datang di Kiryuu Bot</h1>
+                <p>Bot WhatsApp multifungsi yang siap membantu semua kebutuhan Anda, mulai dari investasi hingga hiburan anime.</p>
+                <a href="#features" class="main-cta">Lihat Fitur</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">Fitur Unggulan</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">💰</div>
+                        <h3>Investasi Cerdas</h3>
+                        <p>Berinvestasi dengan mata uang bot, pantau harga coin agar selalu untung.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">❤️</div>
+                        <h3>Pasangan Anime</h3>
+                        <p>Cari tahu dan dapatkan informasi tentang pasangan karakter anime favorit Anda. Sempurna untuk para wibu sejati!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">⬇️</div>
+                        <h3>Downloader Video</h3>
+                        <p>Unduh video dari berbagai sosial media seperti Instagram, TikTok, dan Facebook dengan cepat dan tanpa watermark.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="downloader">
+             <div class="container">
+                <h2 class="section-title">Sosial Media Downloader</h2>
+                <p style="margin-bottom: 30px;">Cukup tempelkan link di bawah ini dan biarkan bot kami yang bekerja!</p>
+                <form class="downloader-form" onsubmit="return handleDownload();">
+                    <input type="url" id="videoUrl" placeholder="Tempel URL video dari IG, TikTok, atau FB di sini..." required>
+                    <button type="submit">Download via WhatsApp</button>
+                </form>
+             </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Hubungi Kami</h2>
+                <p>Siap untuk mencoba? Tambahkan bot ke nomer Anda atau bergabunglah dengan grup komunitas kami untuk mendapatkan info terbaru.</p>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/62857227694668" target="_blank" class="contact-btn bot-btn">Chat Nomer Bot</a>
+                    <a href="https://wa.me/6287873446580" target="_blank" class="contact-btn owner-btn">Chat Owner</a>
+                    <a href="https://chat.whatsapp.com/GU42mV8PsnXJlyroCHFfQi?mode=ac_c" target="_blank" class="contact-btn group-btn">Gabung Grup WA</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Kiryuu Bot. Dibuat dengan ❤️ oleh <a href="#">Rieze (Daffa) & Yan</a>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript untuk fungsionalitas
+        function handleDownload() {
+            const videoUrl = document.getElementById('videoUrl').value;
+            if (!videoUrl) {
+                alert('Mohon masukkan URL video!');
+                return false;
+            }
+
+            // Regex untuk validasi URL (opsional, bisa disesuaikan)
+            const urlPattern = /^(https?:\/\/)?(www\.)?(instagram\.com|tiktok\.com|facebook\.com)\/.+/i;
+            if (!urlPattern.test(videoUrl)) {
+                alert('URL tidak valid. Harap gunakan link dari Instagram, TikTok, atau Facebook.');
+                return false;
+            }
+            
+            // Format pesan WhatsApp
+            const botNumber = '62857227694668';
+            const message = encodeURIComponent(`.ig/tt/fb ${videoUrl}`);
+            
+            // Buka link WhatsApp
+            window.open(`https://wa.me/${botNumber}?text=${message}`, '_blank');
+            
+            // Mencegah form dari submit default
+            return false;
+        }
+
+        // Efek smooth scroll untuk link anchor
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
